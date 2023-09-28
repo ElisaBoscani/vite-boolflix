@@ -9,7 +9,8 @@ export default {
     };
   },
   created() {
-    store.fetchFilm();
+    /*    store.fetchFilm();
+    store.fetchSerie(); */
   },
   methods: {
     getFlag(language) {
@@ -19,18 +20,23 @@ export default {
       return " /node_modules/flag-icons/flags/1x1/" + `${language}` + ".svg";
     },
   },
+  mounted() {
+    store.serch();
+  },
 };
 </script>
 
 <template>
   <div>
     <input type="text" v-model="store.searchText" />
-    <button @click="store.fetchFilm">Cerca</button>
+    <button @click="store.serch">Cerca</button>
   </div>
-  <div class="p-3" v-for="items in store.filmData">
+  <div class="p-3" v-for="items in store.result">
     <ul>
-      <li>Titolo: {{ items.title }}</li>
-      <li>Titolo Originale: {{ items.original_title }}</li>
+      <li>Titolo: {{ items.title }}{{ items.name }}</li>
+      <li>
+        Titolo Originale: {{ items.original_title }}{{ items.original_name }}
+      </li>
       <li>
         Lingua: <img class="fi" :src="getFlag(items.original_language)" />
       </li>
