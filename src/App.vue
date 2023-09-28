@@ -1,5 +1,6 @@
 <script>
 import { store } from "./store";
+
 export default {
   name: "App",
   data() {
@@ -9,6 +10,14 @@ export default {
   },
   created() {
     store.fetchFilm();
+  },
+  methods: {
+    getFlag(language) {
+      if (language === "en") {
+        return " /node_modules/flag-icons/flags/1x1/gb.svg";
+      }
+      return " /node_modules/flag-icons/flags/1x1/" + `${language}` + ".svg";
+    },
   },
 };
 </script>
@@ -22,7 +31,14 @@ export default {
     <ul>
       <li>Titolo: {{ items.title }}</li>
       <li>Titolo Originale: {{ items.original_title }}</li>
-      <li>Lingua: {{ items.original_language }}</li>
+      <li>
+        Lingua: <img class="fi" :src="getFlag(items.original_language)" />
+      </li>
+
+      <!-- {{
+        items.original_language
+      }} -->
+
       <li>Voto: {{ items.vote_average }}</li>
     </ul>
   </div>
