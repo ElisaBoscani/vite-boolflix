@@ -6,9 +6,14 @@ export const store = reactive({
     "https://api.themoviedb.org/3/search/movie?api_key=0cc3e4c26383ecd435926783b5016c67&query=",
   serie_url:
     "https://api.themoviedb.org/3/search/tv?api_key=0cc3e4c26383ecd435926783b5016c67&language=it_IT&query=",
+
+  img_url: "https://image.tmdb.org/t/p/w342/",
+  img_size: "/w500/",
+
   filmData: [],
   serieData: [],
-  result: [],
+  imageData: [],
+  /*  result: [], */
   /*   serch() {
     axios.get(this.film_url + `${this.searchText}`).then((response) => {
       console.log(response);
