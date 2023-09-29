@@ -9,7 +9,7 @@ export const store = reactive({
   filmData: [],
   serieData: [],
   result: [],
-  serch() {
+  /*   serch() {
     axios.get(this.film_url + `${this.searchText}`).then((response) => {
       console.log(response);
       this.filmData = response.data.results;
@@ -23,7 +23,8 @@ export const store = reactive({
     });
     axios.all(this.filmData, this.serieData).then((response) => {
       this.result = [...this.filmData, ...this.serieData];
+
       console.log("result", this.result);
     });
-  },
+  }, */
 });

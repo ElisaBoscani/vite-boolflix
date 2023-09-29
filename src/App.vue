@@ -1,6 +1,6 @@
 <script>
 import { store } from "./store";
-
+import axios from "axios";
 export default {
   name: "App",
   data() {
@@ -19,9 +19,35 @@ export default {
       }
       return " /node_modules/flag-icons/flags/1x1/" + `${language}` + ".svg";
     },
-  },
-  mounted() {
-    store.serch();
+    serch() {
+      axios
+        .get(this.store.film_url + `${this.store.searchText}`)
+        .then((response) => {
+          console.log(response);
+          this.store.filmData = response.data.results;
+          console.log("this.filmData", this.store.filmData);
+        });
+
+      axios
+        .get(this.store.serie_url + `${this.store.searchText}`)
+        .then((response) => {
+          console.log(response);
+          this.store.serieData = response.data.results;
+          console.log("this.serieData", this.store.serieData);
+        });
+      /*    axios
+        .all([axios.get(this.store.filmData), axios.get(this.store.serieData)])
+        .then((response) => {
+          this.store.result = [...this.store.filmData, ...this.store.serieData];
+
+          console.log("result", this.store.result);
+        }); */
+      axios.all(this.store.filmData, this.store.serieData).then((response) => {
+        this.store.result = [...this.store.filmData, ...this.store.serieData];
+
+        console.log("result", this.store.result);
+      });
+    },
   },
 };
 </script>
@@ -29,7 +55,7 @@ export default {
 <template>
   <div>
     <input type="text" v-model="store.searchText" />
-    <button @click="store.serch">Cerca</button>
+    <button @click="serch">Cerca</button>
   </div>
   <div class="p-3" v-for="items in store.result">
     <ul>
