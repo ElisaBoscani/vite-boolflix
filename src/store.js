@@ -13,6 +13,7 @@ export const store = reactive({
   filmData: [],
   serieData: [],
   imageData: [],
+
   /*  result: [], */
   /*   serch() {
     axios.get(this.film_url + `${this.searchText}`).then((response) => {
